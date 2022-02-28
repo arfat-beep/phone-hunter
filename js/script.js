@@ -2,6 +2,7 @@
 document.getElementById("search-btn").addEventListener("click", () => {
   let inputField = document.getElementById("input-fileld");
   let inputValue = inputField.value;
+  inputField.value = "";
   searchData(inputValue);
 });
 
@@ -11,6 +12,8 @@ let searchData = async (value) => {
   let res = await fetch(url);
   let data = await res.json();
   if (data.status) {
+    let notFound = document.getElementById("not-found");
+    notFound.style.display = "none";
     displayCards(data.data);
   } else {
     searchNotFound();
@@ -35,7 +38,9 @@ let displayCards = (data) => {
 };
 // search not found
 let searchNotFound = () => {
-  notFound = document.getElementById("not-found");
+  let displayDiv = document.getElementById("results");
+  displayDiv.innerHTML = "";
+  let notFound = document.getElementById("not-found");
   notFound.style.display = "grid";
 };
 // hide search not found
