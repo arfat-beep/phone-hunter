@@ -1,0 +1,135 @@
+/* imports fonts  */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+/* basic css  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* html element  */
+body {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+img {
+  width: 100%;
+}
+ul {
+  list-style: none;
+}
+ul li {
+  padding-left: 10px;
+}
+/* container style  */
+.container {
+  width: 90%;
+  margin: 15px auto;
+}
+/* search box style */
+#search {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 76% 20%;
+  gap: 20px;
+}
+#search input {
+  border: 3px solid rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: large;
+}
+#search button {
+  border-radius: 10px;
+  padding: 7px 10px;
+  border: none;
+  background-color: rgb(43, 183, 226);
+  color: #fff;
+  font-size: large;
+}
+/* preloader  */
+.loader {
+  display: none;
+  margin: 200px auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 15px solid white;
+  border-top: 15px solid #1abc9c;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* phone details style  */
+#details {
+  display: grid;
+  grid-template-columns: 350px;
+  justify-content: center;
+}
+#details > div {
+  width: 100%;
+  padding: 20px;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+#details > div > div {
+  margin-top: 10px;
+}
+/* not found box style  */
+#not-found {
+  background: rgba(255, 217, 0, 0.664);
+  width: 200px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: large;
+}
+/* search result cards  */
+#results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+#results .card {
+  padding: 10px;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+#results .card div {
+  margin-top: 10px;
+}
+#explore {
+  background-color: red;
+  padding: 10px 40px;
+  border-radius: 10px;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .container {
+    margin: 15px auto;
+  }
+  #search {
+    grid-template-columns: 75% 20%;
+  }
+  #search button {
+    font-size: medium;
+  }
+  #details {
+    grid-template-columns: 100%;
+  }
+  #results {
+    grid-template-columns: 1fr;
+  }
+}
