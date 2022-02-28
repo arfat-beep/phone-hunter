@@ -29,9 +29,17 @@ let searchData = async (value) => {
 let displayCards = (data) => {
   let loader = document.getElementById("loader");
   loader.style.display = "block";
+  if (data.length >= 20) {
+    displayCardsMin(data);
+  }
+};
+// display cards only 20
+let displayCardsMin = (data) => {
+  console.log(data);
+  let data2 = data.slice(0, 20);
   let displayDiv = document.getElementById("results");
   displayDiv.innerHTML = "";
-  data.forEach((data) => {
+  data2.forEach((data) => {
     let card = document.createElement("div");
     card.setAttribute("class", "card");
     card.innerHTML = `
@@ -42,7 +50,13 @@ let displayCards = (data) => {
     `;
     displayDiv.appendChild(card);
   });
+  let loadMore = document.createElement("button");
+  loadMore.innerText = "Load More";
+  loadMore.setAttribute("onclick", "displayCardsAll()");
+  console.log(loadMore);
+  displayDiv.appendChild(loadMore);
 };
+
 // search not found
 let searchNotFound = () => {
   let displayDiv = document.getElementById("results");
@@ -60,7 +74,6 @@ let showDetails = async (slug) => {
   url = `https://openapi.programming-hero.com/api/phone/${slug}`;
   let res = await fetch(url);
   let data = await res.json();
-  console.log(data.data);
   let detailsDiv = document.getElementById("details");
   detailsDiv.innerHTML = "";
   let div = document.createElement("div");
@@ -98,7 +111,6 @@ let showDetails = async (slug) => {
 };
 let others = (data) => {
   if (data) {
-    console.log(data);
     return `<div><strong>Others : </strong></div>
         <div>
           <ul>
