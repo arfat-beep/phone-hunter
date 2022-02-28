@@ -19,8 +19,8 @@ let searchData = async (value) => {
 
 // displayCards
 let displayCards = (data) => {
-  console.log(data);
   let displayDiv = document.getElementById("results");
+  displayDiv.innerHTML = "";
   data.forEach((data) => {
     let card = document.createElement("div");
     card.setAttribute("class", "card");
@@ -33,6 +33,15 @@ let displayCards = (data) => {
     displayDiv.appendChild(card);
   });
 };
-
+// search not found
+let searchNotFound = () => {
+  notFound = document.getElementById("not-found");
+  notFound.style.display = "grid";
+};
+// hide search not found
+let hideNotFound = () => {
+  notFound = document.getElementById("not-found");
+  notFound.style.display = "none";
+};
 // show details
 let showDetails = (slug) => {};

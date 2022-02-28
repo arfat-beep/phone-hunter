@@ -12,7 +12,9 @@
     <div class="container">
       <div id="search">
         <input id="input-fileld" type="text" />
-        <button id="search-btn"><i class="fa fa-magnifying-glass"></i> Search</button>
+        <button id="search-btn">
+          <i class="fa fa-magnifying-glass"></i> Search
+        </button>
       </div>
     </div>
     <!-- search box end  -->
@@ -62,21 +64,16 @@
       <div id="not-found">
         <div><p>Search Not Found</p></div>
         <div>
-          <button><i class="fa-solid fa-xmark"></i></button>
+          <button onclick="hideNotFound()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
     </div>
     <!-- not found box end  -->
     <!-- search result start  -->
     <div class="container">
-      <div id="results">
-        <div class="card">
-          <img src="https://picsum.photos/id/237/200/300" alt="" />
-          <div><strong>Phone name : </strong><span>Iphone</span></div>
-          <div><strong>Brand name : </strong><span>Apple</span></div>
-          <div><button id="explore">Explore</button></div>
-        </div>
-      </div>
+      <div id="results"></div>
     </div>
     <!-- search result end  -->
 
