@@ -52,7 +52,7 @@ ul li {
   font-size: large;
 }
 /* preloader  */
-.loader {
+#loader {
   display: none;
   margin: 200px auto;
   width: 150px;

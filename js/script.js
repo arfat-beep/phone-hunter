@@ -14,7 +14,11 @@ let searchData = async (value) => {
   if (data.status) {
     let notFound = document.getElementById("not-found");
     notFound.style.display = "none";
+
+    let loader = document.getElementById("loader");
+    loader.style.display = "block";
     displayCards(data.data);
+    loader.style.display = "none";
   } else {
     searchNotFound();
   }
@@ -22,6 +26,8 @@ let searchData = async (value) => {
 
 // displayCards
 let displayCards = (data) => {
+  let loader = document.getElementById("loader");
+  loader.style.display = "block";
   let displayDiv = document.getElementById("results");
   displayDiv.innerHTML = "";
   data.forEach((data) => {
