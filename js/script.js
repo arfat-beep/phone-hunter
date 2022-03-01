@@ -2,6 +2,7 @@
 document.getElementById("search-btn").addEventListener("click", () => {
   let inputField = document.getElementById("input-fileld");
   let inputValue = inputField.value;
+
   inputValue = inputValue.toLowerCase();
   inputField.value = "";
   searchData(inputValue);
@@ -22,8 +23,10 @@ let searchData = async (value) => {
     loader.style.display = "block";
     displayCards(data.data);
     loader.style.display = "none";
+  } else if (value == "") {
+    searchNotFound("Please write something");
   } else {
-    searchNotFound();
+    searchNotFound("Search Not Found");
   }
 };
 
@@ -68,11 +71,13 @@ let addCard = (data) => {
 };
 
 // search not found
-let searchNotFound = () => {
+let searchNotFound = (notFoundValue) => {
   let displayDiv = document.getElementById("results");
   displayDiv.innerHTML = "";
   let detailsDiv = document.getElementById("details");
   detailsDiv.innerHTML = "";
+  let notFoundText = document.getElementById("not-found-text");
+  notFoundText.innerText = notFoundValue;
   let notFound = document.getElementById("not-found");
   notFound.style.display = "grid";
 };

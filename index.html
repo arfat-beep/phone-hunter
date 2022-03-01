@@ -12,7 +12,11 @@
     <div class="container">
       <h1>Phone Sikari</h1>
       <div id="search">
-        <input id="input-fileld" type="text" />
+        <input
+          id="input-fileld"
+          type="text"
+          placeholder="Search your favorite phone"
+        />
         <button id="search-btn">
           <i class="fa fa-magnifying-glass"></i> Search
         </button>
@@ -31,7 +35,7 @@
     <!-- not found box start  -->
     <div class="container">
       <div id="not-found">
-        <div><p>Search Not Found</p></div>
+        <div><p id="not-found-text"></p></div>
         <div>
           <button onclick="hideNotFound()">
             <i class="fa-solid fa-xmark"></i>
