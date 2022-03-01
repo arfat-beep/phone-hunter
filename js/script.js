@@ -16,6 +16,8 @@ let searchData = async (value) => {
     let notFound = document.getElementById("not-found");
     notFound.style.display = "none";
 
+    let detailsDiv = document.getElementById("details");
+    detailsDiv.innerHTML = "";
     let loader = document.getElementById("loader");
     loader.style.display = "block";
     displayCards(data.data);
@@ -31,36 +33,35 @@ let displayCards = (data) => {
   loader.style.display = "block";
   if (data.length >= 20) {
     displayCardsMin(data);
+  } else {
+    displayCardsMin(data);
   }
 };
 // display cards only 20
 let displayCardsMin = (data) => {
-  console.log(data);
+  var loadData = data;
   let data2 = data.slice(0, 20);
   let displayDiv = document.getElementById("results");
   displayDiv.innerHTML = "";
-  data2.forEach((data) => {
+  data2.forEach((data2) => {
     let card = document.createElement("div");
     card.setAttribute("class", "card");
     card.innerHTML = `
-    <img src="${data.image}" alt="" />
-            <div><strong>Phone name : </strong><span>${data.phone_name}</span></div>
-            <div><strong>Brand name : </strong><span>${data.brand}</span></div>
-            <div><button id="explore" onclick="showDetails('${data.slug}')">Explore</button></div>
+    <img src="${data2.image}" alt="" />
+            <div><strong>Phone name : </strong><span>${data2.phone_name}</span></div>
+            <div><strong>Brand name : </strong><span>${data2.brand}</span></div>
+            <div><button id="explore" onclick="showDetails('${data2.slug}')">Explore</button></div>
     `;
     displayDiv.appendChild(card);
   });
-  let loadMore = document.createElement("button");
-  loadMore.innerText = "Load More";
-  loadMore.setAttribute("onclick", "displayCardsAll()");
-  console.log(loadMore);
-  displayDiv.appendChild(loadMore);
 };
 
 // search not found
 let searchNotFound = () => {
   let displayDiv = document.getElementById("results");
   displayDiv.innerHTML = "";
+  let detailsDiv = document.getElementById("details");
+  detailsDiv.innerHTML = "";
   let notFound = document.getElementById("not-found");
   notFound.style.display = "grid";
 };
@@ -78,14 +79,18 @@ let showDetails = async (slug) => {
   detailsDiv.innerHTML = "";
   let div = document.createElement("div");
   let sensors = data.data.mainFeatures.sensors.join(", ");
+  if (data.data.releaseDate) {
+    releaseDate = data.data.releaseDate;
+  } else {
+    releaseDate = "No release date found";
+  }
+  console.log(data.data.releaseDate);
   div.innerHTML = `
           <img src="${data.data.image}" alt="" />
           <div><strong>Phone name : </strong><span>${
             data.data.name
           }</span></div>
-          <div><strong>Release date : </strong><span>${
-            data.data.releaseDate
-          }</span></div>
+          <div><strong>Release date : </strong><span>${releaseDate}</span></div>
           <div><strong>Main Features : </strong></div>
           <div>
             <ul>
@@ -95,7 +100,7 @@ let showDetails = async (slug) => {
               <li><strong>Display Size:</strong> ${
                 data.data.mainFeatures.displaySize
               }.</li>
-              <li><strong>ChipSet:</strong> ${
+              <li><strong>Chip Set:</strong> ${
                 data.data.mainFeatures.chipSet
               }.</li>
               <li><strong>Memory:</strong> ${
@@ -109,6 +114,8 @@ let showDetails = async (slug) => {
 
   detailsDiv.appendChild(div);
 };
+
+// load others data if that exist
 let others = (data) => {
   if (data) {
     return `<div><strong>Others : </strong></div>
