@@ -29,6 +29,7 @@ let searchData = async (value) => {
 
 // displayCards
 let displayCards = (data) => {
+  console.log(data);
   let loader = document.getElementById("loader");
   loader.style.display = "block";
   if (data.length >= 20) {
@@ -40,18 +41,28 @@ let displayCards = (data) => {
 // display cards only 20
 let displayCardsMin = (data) => {
   var loadData = data;
+
+  let showMoreButton = document.getElementById("show-more");
+  showMoreButton.style.display = "block";
   let data2 = data.slice(0, 20);
+  addCard(data2);
+  showMoreButton.addEventListener("click", () => {
+    showMoreButton.style.display = "none";
+    addCard(data);
+  });
+};
+let addCard = (data) => {
   let displayDiv = document.getElementById("results");
   displayDiv.innerHTML = "";
-  data2.forEach((data2) => {
+  data.forEach((data2) => {
     let card = document.createElement("div");
     card.setAttribute("class", "card");
     card.innerHTML = `
-    <img src="${data2.image}" alt="" />
-            <div><strong>Phone name : </strong><span>${data2.phone_name}</span></div>
-            <div><strong>Brand name : </strong><span>${data2.brand}</span></div>
-            <div><button id="explore" onclick="showDetails('${data2.slug}')">Explore</button></div>
-    `;
+  <img src="${data2.image}" alt="" />
+          <div><strong>Phone name : </strong><span>${data2.phone_name}</span></div>
+          <div><strong>Brand name : </strong><span>${data2.brand}</span></div>
+          <div><button id="explore" onclick="showDetails('${data2.slug}')">Explore</button></div>
+  `;
     displayDiv.appendChild(card);
   });
 };
