@@ -1,9 +1,27 @@
+// hide show loading animation
+let loader = (value) => {
+  let loader = document.getElementById("loader");
+  if (value) {
+    loader.style.display = "block";
+  } else {
+    loader.style.display = "none";
+  }
+};
+// hide show show more button
+let showMoreButtonFun = (value) => {
+  let showMoreButton = document.getElementById("show-more");
+  if (value) {
+    showMoreButton.style.display = "block";
+  } else {
+    showMoreButton.style.display = "none";
+  }
+};
+
 // trigger search button
 document.getElementById("search-btn").addEventListener("click", () => {
   let inputField = document.getElementById("input-fileld");
   let inputValue = inputField.value;
-  let showMoreButton = document.getElementById("show-more");
-  showMoreButton.style.display = "none";
+  showMoreButtonFun(false);
   inputValue = inputValue.toLowerCase();
   inputField.value = "";
   searchData(inputValue);
@@ -20,10 +38,10 @@ let searchData = async (value) => {
 
     let detailsDiv = document.getElementById("details");
     detailsDiv.innerHTML = "";
-    let loader = document.getElementById("loader");
-    loader.style.display = "block";
+
+    loader(true);
     displayCards(data.data);
-    loader.style.display = "none";
+    loader(false);
   } else if (value == "") {
     searchNotFound("Please write something");
   } else {
@@ -34,24 +52,26 @@ let searchData = async (value) => {
 // displayCards
 let displayCards = (data) => {
   console.log(data);
-  let loader = document.getElementById("loader");
-  loader.style.display = "block";
+
+  loader(true);
   if (data.length >= 20) {
     displayCardsMin(data);
   } else {
-    displayCardsMin(data);
+    displayCardsAll(data);
   }
+};
+
+let displayCardsAll = (data) => {
+  addCard(data);
 };
 // display cards only 20
 let displayCardsMin = (data) => {
-  var loadData = data;
-
   let showMoreButton = document.getElementById("show-more");
-  showMoreButton.style.display = "block";
+  showMoreButtonFun(true);
   let data2 = data.slice(0, 20);
   addCard(data2);
   showMoreButton.addEventListener("click", () => {
-    showMoreButton.style.display = "none";
+    showMoreButtonFun(false);
     addCard(data);
   });
 };
