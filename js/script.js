@@ -2,7 +2,8 @@
 document.getElementById("search-btn").addEventListener("click", () => {
   let inputField = document.getElementById("input-fileld");
   let inputValue = inputField.value;
-
+  let showMoreButton = document.getElementById("show-more");
+  showMoreButton.style.display = "none";
   inputValue = inputValue.toLowerCase();
   inputField.value = "";
   searchData(inputValue);
